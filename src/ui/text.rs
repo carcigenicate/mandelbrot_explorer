@@ -9,29 +9,16 @@ fn char_for_iterations(n_iterations: u32, max_iterations: u32) -> char {
     return DENSITY_SORTED_CHARS.as_bytes()[index] as char;
 }
 
-// TODO: Test area. Takes TL,BR? Returns String?
-
-// real == x
-// imag == y
-pub fn test_area(real_min: f64, real_max: f64, imag_min: f64, imag_max: f64, display_width: u32, display_height: u32, max_iterations: u32, infinity_limit: u32) -> String {
+pub fn test_area_to_text(real_min: f64, real_max: f64, imag_min: f64, imag_max: f64, display_width: u32, display_height: u32, max_iterations: u32, infinity_limit: u32) -> String {
     let mut result = String::new();
 
-    let real_length = real_max - real_min;
-    let imag_length = imag_max - imag_min;
+    mandelbrot_iteration::test_area(real_min, real_max, imag_min, imag_max, display_width, display_height, max_iterations, infinity_limit, |real, imag, x, y, iters| {
+        result.push(char_for_iterations(iters, max_iterations));
 
-    let real_step = real_length / display_width  as f64;
-    let imag_step = imag_length / display_height as f64;
-
-    for display_y in 0..display_height {
-        let imag = imag_min + (display_y as f64) * imag_step;
-        for display_x in 0..display_width {
-            let real = real_min + (display_x as f64) * real_step;
-            let c = Complex::new(real, imag);
-            let iters = mandelbrot_iteration::test_point(c, max_iterations, infinity_limit);
-            result.push(char_for_iterations(iters, max_iterations));
+        if x >= display_width - 1 {
+            result.push('\n');
         }
-        result.push('\n');
-    }
+    });
 
     return result;
 }
