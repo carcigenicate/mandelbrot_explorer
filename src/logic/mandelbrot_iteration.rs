@@ -34,6 +34,7 @@ pub fn test_point(initial: ComplexPoint, max_iterations: u32, infinity_limit: u3
     return i;
 }
 
+/// Callback arguments: real, imag, display_x, display_y, iters
 pub fn test_area
 <F: FnMut(f64, f64, u32, u32, u32) -> ()>
 (
