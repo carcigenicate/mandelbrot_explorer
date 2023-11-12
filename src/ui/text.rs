@@ -13,7 +13,7 @@ fn char_for_iterations(n_iterations: u32, max_iterations: u32) -> char {
 pub fn draw_area(real_min: f64, real_max: f64, imag_min: f64, imag_max: f64, display_width: u32, display_height: u32, max_iterations: u32, infinity_limit: u32) -> String {
     let mut result = String::new();
 
-    mandelbrot_iteration::test_area(real_min, real_max, imag_min, imag_max, display_width, display_height, max_iterations, infinity_limit, |real, imag, x, y, iters| {
+    mandelbrot_iteration::test_area(real_min, real_max, imag_min, imag_max, display_width, display_height, max_iterations, infinity_limit, | _real, _imag, x, _y, iters | {
         result.push(char_for_iterations(iters, max_iterations));
 
         if x >= display_width - 1 {
