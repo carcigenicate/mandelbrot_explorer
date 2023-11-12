@@ -1,7 +1,6 @@
 use crate::logic::mandelbrot_iteration;
 
 // Looks better with less chars for some reason
-//const DENSITY_SORTED_CHARS: &str = ".`-,:\'_;~*\"\\/^i!rl+|I=)(t<j>f1}{vx?L7z][JcTnuysYkohF4eaV3205pbqdXPZUC69K#AwHmg8E%&S$DORNGQBMW@";
 const DENSITY_SORTED_CHARS: &str = " .-:;~*\\/i({vx?@";
 
 fn char_for_iterations(n_iterations: u32, max_iterations: u32) -> char {
